@@ -14,3 +14,15 @@ const connection= new Connection(clusterApiUrl('devnet'))
 // A user object that represents a user with public and secret key
 const user= getKeypairFromEnvironment("SECRET_KEY") 
 console.log("Connected with: ", user.publicKey.toBase58());
+try {
+    const tokenMint= await  createMint(connection, user, user.publicKey,user.publicKey,2)
+    const link= getExplorerLink("address",tokenMint.toString(), 'devnet')
+    console.log("Finished! Created token mint: ",link);
+} catch (error) {
+    console.error(error.message);
+    
+}
+
+
+
+
